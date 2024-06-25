@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 
-const home = () => {
+const Home = () => {
 
     const [admin,setadmin] = useState('')
     const [employee,setemployee] = useState('')
@@ -70,4 +70,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
