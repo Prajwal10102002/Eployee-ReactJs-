@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
+
 
 const home = () => {
 
-    const [admin,setadmin] = useState(0)
-    const [employee,setemployee] = useState(0)
-    const [salary,setsalary] = useState(0)
+    const [admin,setadmin] = useState('')
+    const [employee,setemployee] = useState('')
+    const [salary,setsalary] = useState('')
 
    
 
