@@ -1,26 +1,34 @@
 import React, { useState } from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
 
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [registerStatus, setRegisterStatus] = useState('')
+    const [reEnterPassword, setReEnterPassword] = useState('');
 
     const register = (e) => {
         e.preventDefault()
+        if (password !== reEnterPassword) {
+            
+            alert("Passwords do not match");
+            return;
+        }
         Axios.post('https://employee-node-mqjr.vercel.app/register', {
             name: name,
             email: email,
             password: password,
         }).then((response) => {
             console.log(response);
-            if (response.data.message) {
-                setRegisterStatus(response.data.message)
+            alert(response.data)
+            if (response.data === "User registered successfully") {
+                navigate('/login')
             } else {
-                setRegisterStatus("User Registered")
+                alert("User not Registered")
             }
         })
 
@@ -77,13 +85,18 @@ const Signup = () => {
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="password" id="form3Example4cd" className="form-control" placeholder='Repeat your password'
                                                         required
-
+                                                        value={reEnterPassword} onChange={(e) => setReEnterPassword(e.target.value)}
                                                     />
 
                                                 </div>
                                             </div>
 
+                                            <div class="form-check d-flex justify-content-center mb-5">
 
+                                                <label class="form-check-label" for="form2Example3">
+                                                    Already a user? <a href="/login">Login</a>
+                                                </label>
+                                            </div>
 
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <button type="button" className="btn btn-primary btn-lg" onClick={register}>Register</button>

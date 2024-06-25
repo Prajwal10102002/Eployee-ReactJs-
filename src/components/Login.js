@@ -11,14 +11,14 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const Login = (e) =>{
+    const Login = (e) => {
         e.preventDefault()
         Axios.post('https://employee-node-mqjr.vercel.app/login', {
             email: email,
             password: password,
         }).then((response) => {
             console.log(response);
-            
+
             if (response.data.Status === "Success") {
                 console.log(response.data.Token)
                 navigate('/')
@@ -30,8 +30,8 @@ const Login = () => {
     }
 
 
-  return (
-    <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+    return (
+        <section className="vh-100" style={{ backgroundColor: "#eee" }}>
             <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-12 col-xl-11">
@@ -42,7 +42,7 @@ const Login = () => {
                                         <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
                                         <form className="mx-1 mx-md-4">
 
-                                            
+
 
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -62,13 +62,20 @@ const Login = () => {
                                                         required
                                                         value={password} onChange={(e) => setPassword(e.target.value)}
                                                     />
-
                                                 </div>
+                                            </div>
+
+                                            <div class="form-check d-flex justify-content-center mb-5">
+                                        
+                                                <label class="form-check-label" for="form2Example3">
+                                                    Not a user? <a href="/signup">Sign up</a>
+                                                </label>
                                             </div>
 
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <button type="button" className="btn btn-primary btn-lg" onClick={Login}>Login</button>
                                             </div>
+
 
                                         </form>
                                     </div>
@@ -84,7 +91,7 @@ const Login = () => {
                 </div>
             </div>
         </section>
-  )
+    )
 }
 
 export default Login
